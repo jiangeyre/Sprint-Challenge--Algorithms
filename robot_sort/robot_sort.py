@@ -96,9 +96,7 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # still kinda confused as to the point of the robot's light being on and off (is it superfluous to the sorting of the list)
-        # or is it because it is a robot and BEEP BOOP BEEP BOOP
-        self.set_light_on() # Beep boop = light turned on and off to show a successful move of an item
+        self.set_light_on() # Beep boop = light is off if there are swaps going on
 
         while self.light_is_on():
             self.set_light_off() # Beep boop
@@ -106,7 +104,7 @@ class SortingRobot:
             # if we can move to the right, move and compare new item to current
             while self.can_move_right():
                 self.move_right()
-                
+
                 if self.compare_item() == 1: # looking up 1 means item is greater
                     self.swap_item()
                     self.set_light_on() # Beep boop
