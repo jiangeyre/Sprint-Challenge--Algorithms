@@ -96,8 +96,31 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        self.set_light_on() # Beep boop = light is off if there are swaps going on
+
+        while self.light_is_on():
+            self.set_light_off() # Beep boop
+
+            # if we can move to the right, move and compare new item to current
+            while self.can_move_right():
+                self.move_right()
+
+                if self.compare_item() == 1: # looking up 1 means item is greater
+                    self.swap_item()
+                    self.set_light_on() # Beep boop
+            
+            # if we can move to the left, move left, swap and compare new item to current
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+
+                if self.compare_item() == -1: # -1 means held item is less
+                    self.swap_item() # swap held with the one to the left
+                    self.set_light_on() # Beep boop
+
+                self.move_right()
+                self.swap_item()
+                self.move_left()
 
 
 if __name__ == "__main__":
